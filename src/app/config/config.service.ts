@@ -13,13 +13,17 @@ export interface Config {
 
 @Injectable()
 export class ConfigService {
-    configUrl = 'assets/config.json';
-
+  configUrl = 'assets/config.json';
+  // configUrl = 'zzapp.zapto.org:3221';
     constructor(private http: HttpClient) { }
 
     getConfig() {
         // now returns an Observable of Config
-        return this.http.get<Config>(this.configUrl);
+        return this.http.get<Config>(this.configUrl)
+        .pipe(
+          retry(1),
+          catchError(this.handleError)
+        );;
       }
 
       getConfigResponse(): Observable<HttpResponse<Config>> {
