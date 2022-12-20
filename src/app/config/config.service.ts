@@ -13,8 +13,8 @@ export interface Config {
 
 @Injectable()
 export class ConfigService {
-  configUrl = 'assets/config.json';
-  // configUrl = 'zzapp.zapto.org:3221';
+  // configUrl = 'assets/config.json';
+  configUrl = 'zzapp.zapto.org:3221';
     constructor(private http: HttpClient) { }
 
     getConfig() {
